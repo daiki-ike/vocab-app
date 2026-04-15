@@ -191,7 +191,7 @@ JSONのみ返してください（コードブロック・説明文不要）:
     setFlipped(false);
   };
 
-   (
+  return (
     <div className="tab-content">
       <div className="section-label">今日のトピック</div>
       <div className="input-row">
