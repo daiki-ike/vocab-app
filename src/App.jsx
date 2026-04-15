@@ -175,7 +175,7 @@ JSONのみ返してください（コードブロック・説明文不要）:
 {"cards":[{"en":"phrase or word","ja":"日本語の意味","example":"Short natural example sentence.","example_ja":"例文の日本語訳"}]}`
       );
       setCards(result.cards || []);
-      setFlashIdx(0);
+      setFlareturnshIdx(0);
       setFlipped(false);
       setViewMode("list");
     } catch (err) {
@@ -191,7 +191,7 @@ JSONのみ返してください（コードブロック・説明文不要）:
     setFlipped(false);
   };
 
-  return (
+   (
     <div className="tab-content">
       <div className="section-label">今日のトピック</div>
       <div className="input-row">
