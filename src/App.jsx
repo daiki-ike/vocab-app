@@ -7,7 +7,7 @@ async function callGemini(content) {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
 
   // Canvas環境でサポートされているモデルのエンドポイントを使用します。
- const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+ const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
   const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
