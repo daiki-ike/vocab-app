@@ -175,7 +175,7 @@ JSONのみ返してください（コードブロック・説明文不要）:
 {"cards":[{"en":"phrase or word","ja":"日本語の意味","example":"Short natural example sentence.","example_ja":"例文の日本語訳"}]}`
       );
       setCards(result.cards || []);
-      setFlareturnshIdx(0);
+      setFlashIdx(0);
       setFlipped(false);
       setViewMode("list");
     } catch (err) {
