@@ -16,5 +16,5 @@ jobs:
     steps:
       - name: アプリにアクセスしてスリープを防ぐ
         run: |
-          code=$(curl -sS -m 90 -o /dev/null -w "%{http_code}" https://vocab-app-REPLACE.onrender.com/ || true)
+          code=$(curl -sS -m 90 -o /dev/null -w "%{http_code}" https://vocab-app-12uv.onrender.com/ || true)
           echo "応答コード: $code"
