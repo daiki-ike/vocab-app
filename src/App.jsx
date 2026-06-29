@@ -1,30 +1,23 @@
 import React, { useState } from "react";
 
-// ─── API (Gemini対応版) ───────────────────────────────
+// ─── API ───────────────────────────────
+// 自分のサーバー（server.js）経由でGeminiを呼ぶ。
+// APIキーはサーバー側に隠してあるので、ブラウザには出さない。
 async function callGemini(content) {
-  // Canvas環境で動作させるため、APIキーは空文字列に設定します。
-  // ※Vercel等へデプロイする際は、環境変数を使用するように（例: import.meta.env.VITE_GEMINI_API_KEY）書き換えてください。
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
-
-  // Canvas環境でサポートされているモデルのエンドポイントを使用します。
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-  const res = await fetch(url, {
+  const res = await fetch("/api/generate", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: content }] }]
-    }),
+    body: JSON.stringify({ content }),
   });
 
   if (!res.ok) {
     const errBody = await res.json().catch(() => ({}));
-    throw new Error(`API通信エラー (${res.status}): ${errBody?.error?.message || res.statusText}`);
+    throw new Error(`API通信エラー (${res.status}): ${errBody?.error || res.statusText}`);
   }
-  const data = await res.json();
-  const raw = data.candidates[0].content.parts[0].text;
-  
+  const { text } = await res.json();
+
   // MarkdownのJSONブロック記法を取り除いてパース
-  return JSON.parse(raw.replace(/```json\n?|```/g, "").trim());
+  return JSON.parse(text.replace(/```json\n?|```/g, "").trim());
 }
 
 function speak(text) {

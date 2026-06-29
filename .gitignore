@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# 環境変数（APIキー）— 絶対にコミットしない
+.env
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
